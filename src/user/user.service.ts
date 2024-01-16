@@ -14,16 +14,23 @@ export class UserService {
     private readonly userRepository: Repository<UserModel>
   ) {}
 
-  async create(createUserDto: CreateUserDto) {
+  create(createUserDto: CreateUserDto) {
     const createUser = this.userRepository.create({ ...createUserDto });
 
-    const saveUser = await this.userRepository.save(createUser);
+    const saveUser = this.userRepository.save(createUser);
 
     return saveUser;
   }
 
-  findAll() {
-    return `This action returns all user`;
+  async login(nickName: string, password: string) {
+    const loginUser = await this.userRepository.findOne({
+      where: {
+        nickName: nickName,
+        password: password
+      }
+    });
+    
+    return loginUser;
   }
 
   findOne(id: number) {

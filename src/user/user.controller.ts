@@ -12,9 +12,11 @@ export class UserController {
     return this.userService.create(createUserDto);
   }
 
-  @Get()
-  findAll() {
-    return this.userService.findAll();
+  @Post("login")
+  findAll(@Body("nickName") nickName: string, @Body("password") password: string) {
+    const loginUser = this.userService.login(nickName, password);
+
+    return loginUser;
   }
 
   @Get(':id')
