@@ -1,5 +1,5 @@
 import { Repository } from 'typeorm';
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 /** Entity */
 import { UserModel } from 'src/user/entities/user.entity';
@@ -30,6 +30,10 @@ export class UserService {
       }
     });
     
+    if(!loginUser) {
+      throw new NotFoundException("아이디 또는 비밀번호를 확인해주세요.")
+    }
+
     return loginUser;
   }
 
