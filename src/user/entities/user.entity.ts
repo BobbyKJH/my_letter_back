@@ -9,5 +9,8 @@ export class UserModel {
   userName: string;
 
   @Column()
+  nickName: string;
+
+  @Column()
   password: string;
 }
