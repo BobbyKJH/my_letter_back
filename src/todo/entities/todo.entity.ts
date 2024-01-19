@@ -16,7 +16,7 @@ export class TodoModel {
   @CreateDateColumn()
   createAt: Date;
 
-  @Column()
+  @Column({ type: "int" })
   writeId: number;
 
   @Column({ type: "enum", enum: todoTimeEnum })
