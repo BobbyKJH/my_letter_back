@@ -5,7 +5,7 @@ import { todoTimeEnum } from "src/todo/const/todo.const";
 @Entity("todo")
 export class TodoModel {
   @PrimaryGeneratedColumn()
-  id: number;
+  id: string;
   
   @Column({ type: "varchar", length: 100 })
   title: string;
