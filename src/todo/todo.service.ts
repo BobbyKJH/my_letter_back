@@ -8,6 +8,7 @@ import { CreateTodoDto } from 'src/todo/dto/create-todo.dto';
 import { UpdateTodoDto } from 'src/todo/dto/update-todo.dto';
 /** Enum */
 import { todoTimeEnum } from 'src/todo/const/todo.const';
+import { sha256 } from 'js-sha256';
 
 @Injectable()
 export class TodoService {
@@ -24,10 +25,11 @@ export class TodoService {
     return saveTodo;
   }
 
-  async findDayAll() {
+  async findDayAll(id: string) {
     const findDay = await this.todoRepository.find({
       where: {
-        time: todoTimeEnum.DAY
+        time: todoTimeEnum.DAY,
+        id: sha256(id)
       }
     });
 
@@ -64,7 +66,7 @@ export class TodoService {
     return findYear;
   }
 
-  findOne(id: number) {
+  findOne(id: string) {
     const findOne = this.todoRepository.findOne({
       where: { id: id }
     })

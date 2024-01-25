@@ -15,8 +15,8 @@ export class TodoController {
   }
 
   @Get("day")
-  findDayAll() {
-    return this.todoService.findDayAll();
+  findDayAll(@Param("id") id: string) {
+    return this.todoService.findDayAll(id);
   };
 
   @Get("week")
@@ -36,7 +36,7 @@ export class TodoController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.todoService.findOne(+id);
+    return this.todoService.findOne(id);
   };
 
   @Put(':id')
