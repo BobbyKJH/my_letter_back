@@ -36,10 +36,11 @@ export class TodoService {
     return findDay;
   }
 
-  async findWeekAll() {
+  async findWeekAll(id: string) {
     const findWeek = await this.todoRepository.find({
       where: {
-        time: todoTimeEnum.WEEK
+        time: todoTimeEnum.WEEK,
+        id: sha256(id)
       }
     });
 

@@ -20,8 +20,8 @@ export class TodoController {
   };
 
   @Get("week")
-  findWeekAll() {
-    return this.todoService.findWeekAll();
+  findWeekAll(@Param("id") id: string) {
+    return this.todoService.findWeekAll(id);
   };
 
   @Get("month")
