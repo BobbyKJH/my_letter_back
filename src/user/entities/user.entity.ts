@@ -1,8 +1,10 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { TodoModel } from "src/todo/entities/todo.entity";
+import { Column, Entity, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity("user_info")
 export class UserModel {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn("uuid")
+  @OneToOne(() => TodoModel, (todo) => todo.writeId)
   id: number;
 
   @Column()
